@@ -1,0 +1,12 @@
+<template name="EditItem">
+  {{#autoForm collection="Items" id="editItemsForm" type="update" doc=selectedItem }}
+    <fieldset>
+      <legend>Insert a item</legend>
+      {{> afQuickField name='item' tabIndex='1'}}
+      {{> afQuickField name='description'  tabIndex='1'}}
+      {{> afQuickField name='price'  tabIndex='1'}}
+    </fieldset>
+      <button type="submit" class="btn btn-primary">Edit item</button>
+      <button id="delete" class="btn btn-danger">Delete item</button>
+  {{/autoForm}}
+</template>

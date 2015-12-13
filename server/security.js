@@ -1,0 +1,1 @@
+Items.permit(['insert', 'update', 'remove']).apply();

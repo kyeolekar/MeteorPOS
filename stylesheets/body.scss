@@ -1,0 +1,16 @@
+body{
+  background: #141311;
+  color: #ffffff;
+}
+.table-hover > tbody > tr:hover {
+    background-color: #828281;
+}
+
+#iron-router-progress {
+    background-color : #c0392b;
+    box-shadow       : 0 0 5px #c0392b;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
