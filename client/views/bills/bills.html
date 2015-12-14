@@ -1,50 +1,121 @@
 <template name="Bills">
   <div class="container">
+<!--       <table class="table table-bordered table-hover" id="tab_logic">
+        <thead>
+          <tr >
+            <th class="text-center">
+              Code
+            </th>
+            <th class="text-center">
+              Item
+            </th>
+            <th class="text-center">
+              Quantity
+            </th>
+            <th class="text-center">
+              MRP
+            </th>
+            <th class="text-center">
+              Discount
+            </th>
+            <th class="text-center">
+              Amount
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id='addr0'>
+            <td>
+            <input type="text" id="searchBox" tabindex="1" name='code'  placeholder='Item Code' class="form-control"/>
+            </td>
+            <td>
+            <input type="text" name='item' placeholder='Apsara pencil' class="form-control"/>
+            </td>
+            <td>
+            <input type="text" name='quantity' placeholder='Quantity' class="form-control"  tabindex="2"/>
+            </td>
+            <td>
+            <input type="text" name='mrp' placeholder='50' class="form-control"/>
+            </td>
+            <td>
+            <input type="text" name='discount (%)' placeholder='5' class="form-control"  tabindex="3"/>
+            </td>
+            <td>
+            <input type="text" name='amount' placeholder='250' class="form-control"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+ -->
+      <table class="table" id="displayTable">
+        <thead>
+          <tr >
+            <th class="text-center">
+              Code
+            </th>
+            <th class="text-center">
+              Item
+            </th>
+            <th class="text-center">
+              Quantity
+            </th>
+            <th class="text-center">
+              MRP
+            </th>
+            <th class="text-center">
+              Discount
+            </th>
 
-    <div class="main">
-      
-      <form id="quickAdd" role="form">
-        <div class="form-group">
-          <input type="text" id="searchBox" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Add</button>
-      </form>
+            <th class="text-center">
+              Amount
+            </th>
+            <th class="text-center">
+              Delete
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id='search'>
+            <td>
+              <input type="text" id="searchBox" tabindex="1" name='code'  placeholder='Item Code' class="form-control" form="addToCart" />
+            </td>
+            <td>
+              <input type="text" id="searchItem" name='item' placeholder='Apsara pencil' class="form-control" form="addToCart" />
+            </td>
+            <td>
+              <input type="text" id="searchQty" name='quantity' placeholder='Quantity' class="form-control" value="1"  tabindex="2" form="addToCart" />
+            </td>
+            <td>
+              <input type="text" id="searchMrp" step="0.01" name='mrp' placeholder='50' class="form-control" form="addToCart" />
+            </td>
+            <td>
+              <input type="text" id="searchDisc" name='discount (%)' placeholder='5' class="form-control"  tabindex="3" step="0.01" form="addToCart" />
+            </td>
+            <td>
+              <input type="text" step="0.01" id="searchTotal" name='amount' placeholder='250' class="form-control" form="addToCart" />
+            </td>
+            <td>
+              <input type="submit" tabindex="4" class="form-control" value="Add" form="addToCart" />
+            </td>
+          </tr>
 
-    </div>
+          <tr class="sum">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              &nbsp; <span id="t-total">0</span><br>
+              - <span id="t-saving">0</span><br>
+              <hr>
+              <span id="t-calcTotal">0</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h1>Shopping Cart</h1><hr>
-    <table class="table table-hover table-bordered">
-          <tbody>
-              <tr>
-                  <th>Item</th>
-                  <th>QTY</th>
-                  <th>Unit Price</th>
-                  <th>Total Price</th>
-              </tr>
-              <tr>
-                  <td>Awesome Product</td>
-                  <td>1 <a href="#">X</a></td>
-                  <td>£250.00</td>
-                  <td>£250.00</td>
-              </tr>
-              <tr>
-                  <th colspan="3"><span class="pull-right">Sub Total</span></th>
-                  <th>£250.00</th>
-              </tr>
-              <tr>
-                  <th colspan="3"><span class="pull-right">VAT 20%</span></th>
-                  <th>£50.00</th>
-              </tr>
-              <tr>
-                  <th colspan="3"><span class="pull-right">Total</span></th>
-                  <th>£300.00</th>
-              </tr>
-              <tr>
-                  <td><a href="#" class="btn btn-primary">Continue Shopping</a></td>
-                  <td colspan="3"><a href="#" class="pull-right btn btn-success">Checkout</a></td>
-              </tr>
-          </tbody>
-      </table>          
-        
+      <form id="addToCart"></form>
+
   </div>
 </template>
