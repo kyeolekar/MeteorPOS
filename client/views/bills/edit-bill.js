@@ -1,5 +1,5 @@
-Template.Bills.helpers({
-    items: function(){
+Template.editBill.helpers({
+    allItems: function(){
       return Items.find();
     }
 });
@@ -11,7 +11,7 @@ function findItem(val){
         ]}));
 }
 
-Template.Bills.rendered = function () {
+Template.editBill.rendered = function () {
   AutoCompletion.init("input#searchBox");
 
   Mousetrap.bind(['ctrl+return'], function(e) {
@@ -21,13 +21,21 @@ Template.Bills.rendered = function () {
   Mousetrap.bind(['ctrl+shift+return'], function(e) {
     $("#savement").submit();
   });
-
   // function addToCart(obj){
     
   // }
 }
-var arrCart = [];
-Template.Bills.events = {
+
+Template.editBill.onCreated(function(){
+  var arrCart = [];
+  var data = arrCart ;
+  var id=$("#bill-id").val();
+  var dd = Bills.findOne({_id:id}).data;
+  arrCart = data.concat(dd);
+  console.log(arrCart);
+})
+
+Template.editBill.events = {
   'keyup input#searchBox': function () {
     AutoCompletion.autocomplete({
       element: 'input#searchBox',       // DOM identifier for the element
@@ -90,8 +98,8 @@ Template.Bills.events = {
     } else {
       item.amount = $("#searchTotal").val() ;
     }
-    
     arrCart.push(item);
+    console.log(arrCart);
     addToTable(item);
     $('#addToCart')[0].reset();
     $("#searchBox").focus();
@@ -100,16 +108,12 @@ Template.Bills.events = {
   },
   'click .remove': function(e){
     var val = $(e.currentTarget).children('input:hidden').val();
-    // var toDel = $(e.target).children('input:hidden').val();
-    // alert(toDel);
-
-    // someArray = [{name:"Kristian", lines:"2,5,10"},
-    //              {name:"John", lines:"1,19,26,96"},
-    //              {name:"Brian",lines:"3,9,62,36" }]
     arrCart = arrCart
                    .filter(function (el) {
                             return el.code !== val;
                            });
+    console.log(arrCart);
+
     $('#displayTable tr[data-code="'+val+'"]').remove();
     calcTotal();
   },
@@ -119,19 +123,20 @@ Template.Bills.events = {
   },
   'submit #payment': function(e){
     e.preventDefault();
-    // get the customers name
+    var data = arrCart ;
+    var id=$("#bill-id").val();
+    // var dd = Bills.findOne({_id:id}).data;
+    // data = data.concat(dd);
     var customer = $('#party-name').val();
-    // get the array of submission
-    var data = arrCart;
     var a = {};
     a.total = $("#t-total").text();
     a.savings = $("#t-saving").text()
     a.grand = $("#t-calcTotal").text();
     var payed = true;
     // save the array and name, assign a bill number, and date
-    Meteor.call('saveBill', customer, data, payed, a, function(err,res){
+    Meteor.call('saveEditedBill', id, customer, data, payed, a, function(err,res){
       if(err){
-        alert("error");
+        alert(err);
       } else{
         arrCart = []
         Router.go("/bills/"+res);
@@ -143,21 +148,24 @@ Template.Bills.events = {
   'submit #savement': function(e){
     e.preventDefault();
     // get the customers name
+    var data = arrCart ;
+    var id=$("#bill-id").val();
+    // var dd = Bills.findOne({_id:id}).data;
+    // data = data.concat(dd);
     var customer = $('#party-name').val();
-    // get the array of submission
-    var data = arrCart;
     var a = {};
     a.total = $("#t-total").text();
     a.savings = $("#t-saving").text()
     a.grand = $("#t-calcTotal").text();
     var payed = false;
-    // save the array and name, assign a bill number, and date
-    Meteor.call('saveBill', customer, data, payed, a, function(err,res){
+    console.log(data);
+    // // save the array and name, assign a bill number, and date
+    Meteor.call('saveEditedBill', id, customer, data, payed, a, function(err,res){
       if(err){
-        alert("error");
+        alert(err);
       } else{
         arrCart = []
-        Router.go("/edit-bill/"+res);
+        Router.go("/bills/");
       }
     });
   }
@@ -188,5 +196,4 @@ function calcTotal(){
   $("#t-total").text(total);
   $("#t-saving").text(saving);
   $("#t-calcTotal").text(calcTotal);
-
 }

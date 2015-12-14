@@ -40,3 +40,47 @@ Router.route("/bills",{
   title:"Bills",
   cache: true
 });
+
+Router.route("/bills/:id",{
+  waitOn: function() {
+    return Meteor.subscribe('Bills');
+  },
+  name: 'viewBill',
+  template:"viewBill",
+  title:"view bill",
+  cache: true,
+  data: function(){
+    return Bills.findOne({_id: this.params.id});
+  }
+});
+
+Router.route("/edit-bill/:id",{
+  waitOn: function() {
+    Meteor.subscribe('Items');
+    return Meteor.subscribe('Bills');
+  },
+  name: 'editBill',
+  template:"editBill",
+  title:"Edit bill",
+  cache: true,
+  data: function(){
+    return Bills.findOne({_id: this.params.id});
+  },
+  onBeforeAction: function (pause) {
+    if (Bills.findOne({_id: this.params.id}).payed===true) {
+      this.redirect('/bills/'+this.params.id);
+    } else{
+      this.next();
+    }
+  }
+});
+
+Router.route("/all-bills",{
+  waitOn: function() {
+    return Meteor.subscribe('Bills');
+  },
+  name: 'tableBill',
+  template:"tableBill",
+  title:"All bills",
+  cache: true
+});

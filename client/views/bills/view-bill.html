@@ -1,0 +1,63 @@
+<template name="viewBill">
+  <div class="container">
+    <div class="row">
+      <div class="text-center"><h2>Cash Memo</h2></div>
+    </div>
+
+    <div class="row addr">
+      <div class="col-md-6 hide-print" >
+        <label>Bill To</label>
+        {{customer}}
+      </div>
+
+      <div class="col-md-6" id="seller-name">
+        Bharti Book Sellers,Shop no 12, Geeta vandan,Nashik - 4
+      </div>
+    </div>
+    <hr>
+    <div class="row date">
+      
+      <div class="col-md-6">
+        Bill Number - {{billno}}
+      </div>
+
+      <div class="col-md-6">
+        Date &amp; Time - {{formattedDate}}
+      </div>
+
+    </div>
+
+    <table class="table" id="displayTable">
+      <thead>
+        <tr >
+          <th class="text-center">Item</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">MRP</th>
+          <th class="text-center">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each data}}
+        <tr>
+          <td>{{description}}</td>
+          <td>{{qty}}</td>
+          <td>{{mrp}}</td>
+          <td>{{amount}}</td>
+        </tr>
+      {{/each}}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            &nbsp; <span id="t-total">{{info.total}}</span><br>
+            - <span id="t-saving">{{info.savings}}</span>
+            <hr>
+            <span id="t-calcTotal">{{info.grand}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</template>

@@ -1,17 +1,7 @@
 Template.ItemList.helpers({
   Items: function(){
     return Items.find();
-  },
-  selectedItem: function () {
-    return Items.findOne(Session.get("selectedItem"));
-  },
-  formType: function () {
-    if (Session.get("selectedItem")) {
-      return "update";
-    } else {
-      return "insert";
-    }
-  },
+  }
 });
 
 

@@ -1,4 +1,4 @@
-<template name="Bills">
+<template name="editBill">
   <div class="container">
     <div class="row">
       <div class="text-center"><h2>Cash Memo</h2></div>
@@ -7,7 +7,7 @@
     <div class="row addr">
       <div class="col-md-6" >
         <label>Bill To</label>
-        <input type="text"  tabindex="1" id="party-name" value="Annonymous" class="form-control">
+        <input type="text"  tabindex="1" id="party-name" value="{{customer}}" class="form-control">
       </div>
 
       <div class="col-md-6" id="seller-name">
@@ -19,14 +19,15 @@
     <br>
     <hr>
     <br>
-    <div class="row date hide">
+    <div class="row date ">
       
       <div class="col-md-6">
-        Bill Number - 10011
+        Bill Number - {{billno}}
+        <input type="hidden" value="{{_id}}" id="bill-id" />
       </div>
 
       <div class="col-md-6">
-        Date &amp; Time - 10/10/10 23:23:23
+        Date &amp; Time - {{time}}
       </div>
 
     </div>
@@ -62,27 +63,38 @@
       <tbody>
         <tr id='search'>
           <td>
-            <input type="text" id="searchBox" tabindex="1" name='code'  placeholder='Item Code' class="form-control mousetrap" form="addToCart" />
+            <input type="text" id="searchBox" tabindex="1" name='code'  placeholder='Item Code' class="form-control mousetrap_no" form="addToCart" />
           </td>
           <td>
-            <input type="text" id="searchItem" name='item' placeholder='Apsara pencil' class="form-control mousetrap" form="addToCart" />
+            <input type="text" id="searchItem" name='item' placeholder='Apsara pencil' class="form-control mousetrap_no" form="addToCart" />
           </td>
           <td>
-            <input type="text" id="searchQty" name='quantity' placeholder='Quantity' class="form-control mousetrap" value="1"  tabindex="2" form="addToCart" />
+            <input type="text" id="searchQty" name='quantity' placeholder='Quantity' class="form-control mousetrap_no" value="1"  tabindex="2" form="addToCart" />
           </td>
           <td>
-            <input type="text" id="searchMrp" step="0.01" name='mrp' placeholder='50' class="form-control mousetrap" form="addToCart" />
+            <input type="text" id="searchMrp" step="0.01" name='mrp' placeholder='50' class="form-control mousetrap_no" form="addToCart" />
           </td>
           <td>
-            <input type="text" id="searchDisc" name='discount (%)' placeholder='5' class="form-control mousetrap"  tabindex="3" step="0.01" form="addToCart" />
+            <input type="text" id="searchDisc" name='discount (%)' placeholder='5' class="form-control mousetrap_no"  tabindex="3" step="0.01" form="addToCart" />
           </td>
           <td>
-            <input type="text" step="0.01" id="searchTotal" name='amount' placeholder='250' class="form-control mousetrap" form="addToCart" />
+            <input type="text" step="0.01" id="searchTotal" name='amount' placeholder='250' class="form-control mousetrap_no" form="addToCart" />
           </td>
           <td>
             <input type="submit" tabindex="4" class="form-control" value="Add" form="addToCart" />
           </td>
         </tr>
+        {{#each data}}
+        <tr class="dyn" data-code="{{code}}">
+          <td>{{code}}</td>
+          <td>{{description}}</td>
+          <td class="increment">{{qty}}<input type="hidden" value="Ap-pencil"></td>
+          <td>{{mrp}}</td>
+          <td>{{disc}}</td>
+          <td>{{amount}}</td>
+          <td class="remove"> <i class="fa fa-remove" style="color:red;"></i><input type="hidden" value="{{code}}"></td>
+        </tr>
+        {{/each}}
 
         <tr class="sum">
           <td></td>
@@ -91,10 +103,10 @@
           <td></td>
           <td></td>
           <td>
-            &nbsp; <span id="t-total">0</span><br>
-            - <span id="t-saving">0</span><br>
+            &nbsp; <span id="t-total">{{info.total}}</span><br>
+            - <span id="t-saving">{{info.savings}}</span><br>
             <hr>
-            <span id="t-calcTotal">0</span>
+            <span id="t-calcTotal">{{info.grand}}</span>
           </td>
         </tr>
       </tbody>
@@ -107,9 +119,9 @@
           <button class="btn btn-lg btn-primary pull-right" type="submit">Pay</button>
         </form>
 
-        <!--<form id="savement">
+        <form id="savement">
           <button type="submit" class="btn btn-lg btn-default pull-right">Save</button>
-        </form>-->
+        </form>
       </div>
     </div>
 
