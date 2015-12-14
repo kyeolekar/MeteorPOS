@@ -14,8 +14,13 @@ Template.items.helpers({
   }
 });
 
-Template.items.onRendered({
-
+Template.items.onRendered(function(){
+  $("input[name='description']").focusout(function(){
+    if($(this).val()==""){
+      var de = $("input[name='item']").val();
+      $(this).val(de);
+    }
+  });
 });
 
 Template.items.events({

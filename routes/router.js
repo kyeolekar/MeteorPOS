@@ -17,7 +17,8 @@ Router.route("/",{
   },
   name: 'items',
   template:"Items",
-  title:"Items"
+  title:"Items",
+  cache: true
 });
 
 Router.route("/item/:id",{
@@ -26,11 +27,16 @@ Router.route("/item/:id",{
   },
   name: 'editItem',
   template: 'EditItem',
-  title: "Edit Item"
+  title: "Edit Item",
+  cache: true
 })
 
 Router.route("/bills",{
+  waitOn: function() {
+    return Meteor.subscribe('Items');
+  },
   name: 'bills',
   template:"Bills",
-  title:"Bills"
+  title:"Bills",
+  cache: true
 });
