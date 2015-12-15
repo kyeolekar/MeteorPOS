@@ -21,6 +21,7 @@ Template.items.onRendered(function(){
       $(this).val(de);
     }
   });
+  $("input[name='item']").focus();
 });
 
 Template.items.events({

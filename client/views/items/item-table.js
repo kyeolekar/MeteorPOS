@@ -7,10 +7,6 @@ Template.ItemList.helpers({
 
 Template.ItemList.onRendered(function () {
 
-  Mousetrap.bind(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'], function(e) {
-      $("input[placeholder='Filter']").focus();
-  });
-
 });
 
 

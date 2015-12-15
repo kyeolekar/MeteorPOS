@@ -1,11 +1,11 @@
 
 
-body{
-  background: #fff;
-  color: #000;
-}
+// body{
+//   background: #fff;
+//   color: #000;
+// }
 .table-hover > tbody > tr:hover {
-    background-color: #828281;
+  cursor: pointer;  
 }
 
 #iron-router-progress {

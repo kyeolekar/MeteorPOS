@@ -13,14 +13,16 @@ function findItem(val){
 
 Template.Bills.rendered = function () {
   AutoCompletion.init("input#searchBox");
-
-  Mousetrap.bind(['ctrl+return'], function(e) {
+  
+  $("#party-name").focus();
+  
+  Mousetrap.bind(['shift+s'], function(e) {
     $("#payment").submit();
   });
 
-  Mousetrap.bind(['ctrl+shift+return'], function(e) {
-    $("#savement").submit();
-  });
+  // Mousetrap.bind(['ctrl+shift+return'], function(e) {
+  //   $("#savement").submit();
+  // });
 
   // function addToCart(obj){
     
