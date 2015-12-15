@@ -4,9 +4,14 @@ Template.viewBill.helpers({
    }
 })
 
-Template.viewBill.rendered = function () {
+  // Mousetrap.bind(['return'], function(e) {
+  //   window.print();
+  // });
+
+
+Template.viewBill.onRendered(function () {
+  // Use the Packery jQuery plugin
   Mousetrap.bind(['return'], function(e) {
     window.print();
   });
-
-}
+});

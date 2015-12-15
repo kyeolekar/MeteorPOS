@@ -15,6 +15,5 @@ Template.EditItem.events({
     var id = Items.findOne()._id;
     Meteor.call('deleteItem', id);
     Router.go('items');
-    
   }
 })

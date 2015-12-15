@@ -14,19 +14,13 @@ function findItem(val){
 Template.Bills.rendered = function () {
   AutoCompletion.init("input#searchBox");
   
-  $("#party-name").focus();
+  $("#searchBox").focus();
   
   Mousetrap.bind(['shift+s'], function(e) {
     $("#payment").submit();
   });
-
-  // Mousetrap.bind(['ctrl+shift+return'], function(e) {
-  //   $("#savement").submit();
-  // });
-
-  // function addToCart(obj){
-    
-  // }
+  Mousetrap.unbind('return');
+  arrCart = [];
 }
 var arrCart = [];
 Template.Bills.events = {
@@ -125,6 +119,10 @@ Template.Bills.events = {
     var customer = $('#party-name').val();
     // get the array of submission
     var data = arrCart;
+    console.log(data.length);
+    if(data.length === 0){
+      throw new Meteor.Error("Please enter something")
+    }
     var a = {};
     a.total = $("#t-total").text();
     a.savings = $("#t-saving").text()

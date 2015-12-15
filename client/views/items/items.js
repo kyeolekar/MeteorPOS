@@ -22,6 +22,7 @@ Template.items.onRendered(function(){
     }
   });
   $("input[name='item']").focus();
+  Mousetrap.unbind('return');
 });
 
 Template.items.events({

@@ -16,6 +16,10 @@ Template.tableBill.helpers({
       }
 })
 
+Template.tableBill.onRendered(function(){
+  Mousetrap.unbind('return');
+})
+arrCart = [];
 Template.tableBill.events({
 'click .reactive-table tbody tr': function (event) {
     event.preventDefault();

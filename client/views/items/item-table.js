@@ -6,7 +6,6 @@ Template.ItemList.helpers({
 
 
 Template.ItemList.onRendered(function () {
-
 });
 
 

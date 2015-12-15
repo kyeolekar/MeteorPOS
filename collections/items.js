@@ -3,7 +3,8 @@ Items.attachSchema(new SimpleSchema({
   item: {
     type: String,
     label: "Item Code",
-    max: 200
+    max: 200,
+    unique: true
   },
   description: {
     type: String,
