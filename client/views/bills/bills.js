@@ -1,6 +1,9 @@
 Template.Bills.helpers({
     items: function(){
       return Items.find();
+    },
+    company: function(){
+      return Company.findOne();
     }
 });
 
@@ -20,10 +23,28 @@ Template.Bills.rendered = function () {
     $("#payment").submit();
   });
   Mousetrap.unbind('return');
+
+  // $('#tax-inv').change(function() {
+  //     if($("#tax-inv").prop('checked', true)){
+  //       $("#inv-name").text("Tax Invoice");  // checked    
+  //     }
+  //     if($("#tax-inv").prop('checked', false)){
+  //       $("#inv-name").text("Cash Memo");  // unchecked
+  //     }   
+  //   });
+
   arrCart = [];
 }
 var arrCart = [];
 Template.Bills.events = {
+  // 'change #tax-inv': function(){
+  //   if($("#tax-inv").prop('checked', true)){
+  //     $("#inv-name").text("Tax Invoice");  // checked    
+  //   }
+  //   else{
+  //     $("#inv-name").text("Cash Memo");  // unchecked
+  //   }
+  // },
   'keyup input#searchBox': function () {
     AutoCompletion.autocomplete({
       element: 'input#searchBox',       // DOM identifier for the element
@@ -127,9 +148,10 @@ Template.Bills.events = {
     a.total = $("#t-total").text();
     a.savings = $("#t-saving").text()
     a.grand = $("#t-calcTotal").text();
+    var tax = $("#tax-inv").is(':checked');
     var payed = true;
     // save the array and name, assign a bill number, and date
-    Meteor.call('saveBill', customer, data, payed, a, function(err,res){
+    Meteor.call('saveBill', customer, data, payed, a, tax, function(err,res){
       if(err){
         alert("error");
       } else{

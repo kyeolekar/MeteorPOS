@@ -1,19 +1,21 @@
 <template name="Bills">
   <div class="container">
     <div class="row">
-      <div class="text-center"><h2>Cash Memo</h2></div>
+      <div class="text-center"><h2 id="inv-name">Cash Memo</h2></div>
     </div>
 
     <div class="row addr">
       <div class="col-md-6" >
         <label>Bill To</label>
         <input type="text" tabindex="1" id="party-name" value="Annonymous" class="form-control">
+        <div class="checkbox">
+          <label><input type="checkbox" id="tax-inv">Tax Invoice</label>
+        </div>
       </div>
 
       <div class="col-md-6" id="seller-name">
-        Bharti Book Sellers,<br>
-        Shop no 12, Geeta vandan,<br>
-        Nashik - 4
+        {{company.name}}<br>
+        {{company.address}}
       </div>
     </div>
     <br>

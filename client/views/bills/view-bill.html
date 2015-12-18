@@ -1,8 +1,16 @@
 <template name="viewBill">
   <div class="container">
     <div class="row">
-      <div class="text-center"><h2>Cash Memo</h2></div>
+      <div class="text-center">
+        <h2>
+          {{#if tax}}
+            Tax Invoice
+          {{else}}
+            Cash Memo
+          {{/if}}
+         </h2></div>
     </div>
+    <hr>
 
     <div class="row addr">
       <div class="col-md-6 hidden-print" >
@@ -11,10 +19,16 @@
       </div>
 
       <div class="col-md-6" id="seller-name">
-        Bharti Book Sellers,Shop no 12, Geeta vandan,Nashik - 4
+        {{company.name}}, <br>
+        {{company.address}}<br>
+        {{company.phone}}<br><hr>
+        {{#if tax}}
+          {{#if company.vat}}<b>Vat - {{company.vat}}</b><br>{{/if}}
+          {{#if company.lbt}}<b>Lbt - {{company.lbt}}</b><br>{{/if}}
+        <hr>
+        {{/if}}
       </div>
     </div>
-    <hr>
     <div class="row date">
       
       <div class="col-md-6">
@@ -26,7 +40,7 @@
       </div>
 
     </div>
-
+    <hr>
     <table class="table" id="displayTable">
       <thead>
         <tr >
@@ -60,4 +74,11 @@
     </table>
 
   </div>
+  {{#if tax}}
+  <hr>
+  
+  <footer>
+    {{company.declaration}}    
+  </footer>
+  {{/if}}
 </template>

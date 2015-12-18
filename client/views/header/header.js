@@ -5,5 +5,10 @@ Template.header.onRendered(function () {
   Mousetrap.bind(['up'], function(e) {
       Router.go("items");
   });
-
 });
+
+Template.header.helpers({
+  'company': function(){
+    return Company.findOne();
+  }
+})
