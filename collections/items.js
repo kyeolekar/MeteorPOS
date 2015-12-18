@@ -14,5 +14,11 @@ Items.attachSchema(new SimpleSchema({
     type: Number,
     label: "Price",
     min: 1
+  },
+  stock: {
+    type: Number,
+    label: "Stock Quantity",
+    min: 1,
+    optional: true
   }
 }));
