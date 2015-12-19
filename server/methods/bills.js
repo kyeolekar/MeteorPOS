@@ -12,6 +12,19 @@ Meteor.methods({
       billno: billno,
       tax: tax
     });
+    if(id){
+      data.forEach(function(val){
+        console.log(val);
+        var qty = parseInt(val.qty);
+        var total = parseInt(Items.findOne({item: val.code}).stock);
+        total = total - qty;
+        Items.update({item: val.code},{
+          $set:{
+            stock: total
+          }
+        });
+      })
+    }
     return id;
   },
   saveEditedBill: function(id, customer, data, payed, a){

@@ -11,6 +11,7 @@ Template.tableBill.helpers({
                 { key: 'billno', label: 'Bill Number' },
                 { key: 'grand', label: 'Total' },
                 { key: 'time', label: 'Date & Time' }
+                // { key: 'tax', label: 'Tax Invoice' }
               ]
           };
       }

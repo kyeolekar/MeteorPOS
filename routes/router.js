@@ -3,14 +3,6 @@ Router.configure({
   layoutTemplate: 'Simple'
 });
  
-
-// Router.route("/",{
-//   name: 'home',
-//   template:"Home",
-//   title:"Welcome Home !",
-//   cache: true 
-// });
-
 Router.route("/",{
   waitOn: function() {
     Meteor.subscribe("company");
@@ -46,6 +38,7 @@ Router.route("/bills",{
 
 Router.route("/bills/:id",{
   waitOn: function() {
+     Meteor.subscribe('Items');
     Meteor.subscribe("company");
     return Meteor.subscribe('Bills');
   },
@@ -81,6 +74,7 @@ Router.route("/bills/:id",{
 
 Router.route("/all-bills",{
   waitOn: function() {
+     Meteor.subscribe('Items');
     Meteor.subscribe("company");
     return Meteor.subscribe('Bills');
   },

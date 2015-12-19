@@ -4,13 +4,11 @@
       <div class="text-center">
         <h2>
           {{#if tax}}
-            Tax Invoice
-          {{else}}
-            Cash Memo
+            Tax Invoice    <hr>
           {{/if}}
          </h2></div>
     </div>
-    <hr>
+
 
     <div class="row addr">
       <div class="col-md-6 hidden-print" >
@@ -20,7 +18,7 @@
 
       <div class="col-md-6" id="seller-name">
         {{company.name}}, <br>
-        {{company.address}}<br>
+        {{#if tax}} {{company.address}}<br> {{/if}}
         {{company.phone}}<br><hr>
         {{#if tax}}
           {{#if company.vat}}<b>Vat - {{company.vat}}</b><br>{{/if}}

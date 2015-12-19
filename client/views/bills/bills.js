@@ -65,13 +65,23 @@ Template.Bills.events = {
       $('#searchItem').val(item.description);
       $('#searchMrp').val(item.price);
       $('#searchTotal').val(item.price);
-      
+      $('#stockQty').val(item.stock);
     }
   },
   'change #searchQty': function(e){
     if($("#searchBox").val()){
     var total = parseInt($('#searchMrp').val()) * $('#searchQty').val();
     $('#searchTotal').val(total);
+
+    var val = $("#searchBox").val();
+    var item = Items.findOne({ $or: [
+            { 'item' : val },
+            { 'description': val }
+          ]});
+
+    var stock = item.stock;
+    var qty = $('#searchQty').val();
+    $('#stockQty').val(stock-qty);
   }
   },
   'change #searchDisc': function(e){
@@ -153,7 +163,7 @@ Template.Bills.events = {
     // save the array and name, assign a bill number, and date
     Meteor.call('saveBill', customer, data, payed, a, tax, function(err,res){
       if(err){
-        alert("error");
+        alert(err);
       } else{
         arrCart = []
         Router.go("/bills/"+res);

@@ -1,25 +1,3 @@
 <template name="ItemList">
-  {{> reactiveTable collection=Items  class="table table-bordered table-hover" }}
-<!--   <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Item Code</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each posts}}
-        <tr>
-          <td>{{item}}</td>
-          <td>{{description}}</td>
-          <td>{{price}}</td>
-          <td>{{edit}}</td>
-          <td>{{delete}}</td>
-        </tr>
-      {{/each}}
-    </tbody> -->
-  <!-- </table> -->
+  {{> reactiveTable settings=settings class="table table-bordered table-hover" }}
 </template>
