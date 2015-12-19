@@ -37,14 +37,6 @@ Template.Bills.rendered = function () {
 }
 var arrCart = [];
 Template.Bills.events = {
-  // 'change #tax-inv': function(){
-  //   if($("#tax-inv").prop('checked', true)){
-  //     $("#inv-name").text("Tax Invoice");  // checked    
-  //   }
-  //   else{
-  //     $("#inv-name").text("Cash Memo");  // unchecked
-  //   }
-  // },
   'keyup input#searchBox': function () {
     AutoCompletion.autocomplete({
       element: 'input#searchBox',       // DOM identifier for the element

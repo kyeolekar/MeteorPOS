@@ -1,0 +1,16 @@
+<template name="balance">
+  <div class="container">
+    {{> AddCompany}}
+  </div>
+  <br><br>
+  <div class="container">
+    {{> AddSheet}}
+  </div>
+  <br><br>
+  <div class="container">
+    <a href="{{pathFor 'BalanceList'}}">
+    <button class="btn btn-primary btn-lg" style="width:100%;">Show Balance Sheet</button>
+    </a>
+    <!-- {{> BalanceList}} -->
+  </div>
+</template>

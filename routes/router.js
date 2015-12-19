@@ -115,3 +115,64 @@ Router.route("/settings",{
     return Company.findOne();
   }
 });
+
+
+
+Router.route("/balance-sheet",{
+  waitOn: function(){
+    Meteor.subscribe("userData");
+    Meteor.subscribe("company");
+    Meteor.subscribe("party");
+    return Meteor.subscribe("balance");
+  },
+  name: 'balance',
+  template:"Balance",
+  title:"Balance Sheet",
+  cache: true,
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.render('Account');
+    } else {
+      this.next();
+    }
+  }
+});
+
+Router.route("/edit-company",{
+  waitOn: function(){
+    Meteor.subscribe("userData");
+    Meteor.subscribe("company");
+    return Meteor.subscribe("balance");
+  },
+  name: 'editCompany',
+  template:"EditCompany",
+  title:"Edit Company Form",
+  cache: true,
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.render('Account');
+    } else {
+      this.next();
+    }
+  }
+});
+
+Router.route("/show-sheet",{
+  waitOn: function(){
+    Meteor.subscribe("userData");
+    Meteor.subscribe("party");
+    Meteor.subscribe("company");
+    return Meteor.subscribe("balance");
+  },
+  name: 'BalanceList',
+  template:"BalanceList",
+  title:"Complete Balance Sheet",
+  cache: true,
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.render('Account');
+    } else {
+      this.next();
+    }
+  }
+});

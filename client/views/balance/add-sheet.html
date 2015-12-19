@@ -1,0 +1,28 @@
+<template name='AddSheet'>
+
+  <form id="addSheet">
+    <legend>Add new bill to balance sheet</legend>
+    <div class="form-group">
+      <label for="name">
+        Select the company
+      </label>
+      <select name="name" id="name" class="form-control">
+        {{#each company}}
+          <option value="{{name}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Bill Date</label>
+      <input type="date" class="form-control" id="date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Bill Amount</label>
+      <input type="number" class="form-control" id="amount" required>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Add to balance sheet">
+  </form>
+</template>      

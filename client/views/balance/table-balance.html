@@ -1,0 +1,65 @@
+<template name="BalanceList">
+  <div class="row form-inline">
+    <div class="form-group col-md-6">
+    <form id="dateFilter">
+      <label for="month">Show for Month</label>
+      <select name="month" class="form-control" id="month">
+        <option value="Jan">Jan</option>
+        <option value="Feb">Feb</option>
+        <option value="Mar">Mar</option>
+
+        <option value="Apr">Apr</option>
+        <option value="May">May</option>
+        <option value="Jun">Jun</option>
+
+        <option value="Jul">Jul</option>
+        <option value="Aug">Aug</option>
+        <option value="Sept">Sept</option>
+
+        <option value="Oct">Oct</option>
+        <option value="Nov">Nov</option>
+        <option value="Dec">Dec</option>
+      </select>
+
+      <select name="year" id="year" class="form-control">
+        {{#each yearseed}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+
+        <input type="submit" class="btn btn-primary" value="Filter by date">
+
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <input type="checkbox" id="tax" class="form-control">
+      <label for="tax">Vat present</label>
+    </div>
+
+  </div>
+
+  <table id="list" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>VAT</th>
+        <th>LBT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {{#each balance}}
+          <td>{{getNameFromParty id}}</td>
+          <td>{{date}}</td>
+          <td>₹ {{numberWithCommas amount}}</td>
+          <td>{{getVATFromParty id}}</td>
+          <td>{{getLBTFromParty id}}</td>
+        {{/each}}
+      </tr>
+    </tbody>
+    
+  </table>
+</template>
