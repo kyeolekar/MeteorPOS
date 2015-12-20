@@ -1,44 +1,21 @@
 <template name="BalanceList">
-  <div class="row form-inline">
-    <div class="form-group col-md-6">
+  <div class="form-inline container">
+    <div class="form-group">
+    {{#if filterOn}}
+      <button class="btn btn-primary btn-lg" id="unsetDate">Reset Filter <i class="fa fa-calendar-times-o"></i></button>
+    {{else}}
     <form id="dateFilter">
-      <label for="month">Show for Month</label>
-      <select name="month" class="form-control" id="month">
-        <option value="Jan">Jan</option>
-        <option value="Feb">Feb</option>
-        <option value="Mar">Mar</option>
-
-        <option value="Apr">Apr</option>
-        <option value="May">May</option>
-        <option value="Jun">Jun</option>
-
-        <option value="Jul">Jul</option>
-        <option value="Aug">Aug</option>
-        <option value="Sept">Sept</option>
-
-        <option value="Oct">Oct</option>
-        <option value="Nov">Nov</option>
-        <option value="Dec">Dec</option>
-      </select>
-
-      <select name="year" id="year" class="form-control">
-        {{#each yearseed}}
-          <option value="{{this}}">{{this}}</option>
-        {{/each}}
-      </select>
-
-        <input type="submit" class="btn btn-primary" value="Filter by date">
+    <label>Filter table by date</label>
+      <input type="date" id="startDate" class="form-control">
+      <input type="date" id="endDate" class="form-control">
+      <button type="submit" class="btn btn-primary">Filter by date <i class="fa fa-calendar-check-o"></i></button>
 
       </form>
+    {{/if}}
     </div>
-
-    <div class="col-md-6">
-      <input type="checkbox" id="tax" class="form-control">
-      <label for="tax">Vat present</label>
-    </div>
-
-  </div>
-
+  </div> 
+  <br><br>
+  {{#if balanceFound}}
   <table id="list" class="table table-bordered">
     <thead>
       <tr>
@@ -50,16 +27,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
         {{#each balance}}
+        <tr>
           <td>{{getNameFromParty id}}</td>
           <td>{{date}}</td>
           <td>₹ {{numberWithCommas amount}}</td>
           <td>{{getVATFromParty id}}</td>
           <td>{{getLBTFromParty id}}</td>
+        </tr>
         {{/each}}
-      </tr>
     </tbody>
-    
   </table>
+  {{else}}
+      <div class="jumbotron">
+        <h3>No records found.</h3>
+      </div>
+  {{/if}}
 </template>

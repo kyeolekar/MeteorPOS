@@ -14,7 +14,8 @@ Template.AddSheet.events({
     // name
     data.name = $('select[name="name"]').val();
     // date
-    data.date = moment($('#date').val()).format('DD-MM-YYYY');
+    data.date = $('#date').val();
+    data.date = new Date(data.date);
     // amount
     data.amount = $('#amount').val();
     Meteor.call('addToBalanceSheet', data, function(err){
