@@ -3,10 +3,6 @@ This is a simple point of sale system made with meteor. The projects emphasises 
 
 ## Functionality & Features
 * Add, Edit, Delete Items
-* Add, Save, Delete Bills
+* Add Bills
 
-## Todo
-[] Add Inventory
-[] Add Tally operations
-[] Create a graph and see how was the sale of the month
 
