@@ -57,7 +57,7 @@ Template.Bills.events = {
       $('#searchItem').val(item.description);
       $('#searchMrp').val(item.price);
       $('#searchTotal').val(item.price);
-      $('#stockQty').val(item.stock);
+      $('#stockQty').val(item.stock || 0);
     }
   },
   'change #searchQty': function(e){
@@ -152,6 +152,7 @@ Template.Bills.events = {
     a.grand = $("#t-calcTotal").text();
     var tax = $("#tax-inv").is(':checked');
     var payed = true;
+    console.log(data);
     // save the array and name, assign a bill number, and date
     Meteor.call('saveBill', customer, data, payed, a, tax, function(err,res){
       if(err){

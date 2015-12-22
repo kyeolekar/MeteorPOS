@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="text-center">
-        <h2>
+        <h4>
           {{#if tax}}
-            Tax Invoice    <hr>
+            Tax Invoice   
           {{/if}}
-         </h2></div>
+         </h4></div>
     </div>
 
 
@@ -16,21 +16,20 @@
         {{customer}}
       </div>
 
-      <div class="col-md-6" id="seller-name">
+      <div class="text-center" id="seller-name">
         {{company.name}}, <br>
         {{#if tax}} {{company.address}}<br> {{/if}}
-        {{company.phone}}<br><hr>
+        {{company.phone}}<br>
         {{#if tax}}
           {{#if company.vat}}<b>Vat - {{company.vat}}</b><br>{{/if}}
           {{#if company.lbt}}<b>Lbt - {{company.lbt}}</b><br>{{/if}}
-        <hr>
         {{/if}}
       </div>
     </div>
     <div class="row date">
-      
-      <div class="col-md-6">
-        Bill Number - {{billno}}
+      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        #{{billno}}
       </div>
 
       <div class="col-md-6">
@@ -38,37 +37,51 @@
       </div>
 
     </div>
-    <hr>
+
     <table class="table" id="displayTable">
       <thead>
         <tr >
           <th class="text-center">Item</th>
-          <th class="text-center">Quantity</th>
+          <!--<th class="text-center">Qty</th>-->
           <th class="text-center">MRP</th>
-          <th class="text-center">Amount</th>
+          <th class="text-center">Amt</th>
         </tr>
       </thead>
       <tbody>
       {{#each data}}
         <tr>
           <td>{{description}}</td>
-          <td>{{qty}}</td>
-          <td>{{mrp}}</td>
+          <!--<td>{{qty}}</td>-->
+          <td>{{mrp}} x {{qty}}</td>
           <td>{{amount}}</td>
         </tr>
       {{/each}}
-        <tr>
-          <td></td>
-          <td></td>
+        <!--<tr>
           <td></td>
           <td>
-            &nbsp; <span id="t-total">{{info.total}}</span><br>
-            - <span id="t-saving">{{info.savings}}</span>
+            &nbsp; <span id="t-total">₹{{info.total}}</span><br>
+            <span id="t-saving">₹{{info.savings}}</span>
             <hr>
-            <span id="t-calcTotal">{{info.grand}}</span>
+            <span id="t-calcTotal">₹{{info.grand}}</span>
           </td>
-        </tr>
+        </tr>-->
       </tbody>
+    </table>
+    
+    <table class="border table">
+        <tr style="border-bottom:1px solid #000">
+            <td></td>
+            <td><span id="t-total">₹{{info.total}}</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #000">
+            <td><b>Savings</b></td>
+            <td><span id="t-total">₹{{info.savings}}</span></td>
+        </tr>
+        
+        <tr style="border-bottom:1px solid #000">
+            <td><b>Total</b></td>
+            <td><span id="t-calcTotal">₹{{info.grand}}</span></td>
+        </tr>
     </table>
 
   </div>

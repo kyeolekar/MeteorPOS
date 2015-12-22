@@ -1,0 +1,23 @@
+<template name="EditCompany">
+    
+  <form id="editForm">
+  <legend>Edit Company</legend>
+  <div class="form-group">
+    <label for="name">Company Name</label>
+    <input type="text" id="name" value="{{name}}" class="form-control" required autofocus tabindex="1">
+  </div>
+
+  <div class="form-group">
+    <label for="vat">Company VAT</label>
+    <input type="text" id="vat" value="{{vat}}" class="form-control" tabindex="1">
+  </div>
+
+  <div class="form-group">
+    <label for="lbt">Company LBT</label>
+    <input type="text" id="lbt" class="form-control" value="{{lbt}}" tabindex="1">
+  </div>
+
+  <input type="submit" value="Edit Company" class="btn btn-primary" tabindex="1">
+  </form>
+    
+</template>

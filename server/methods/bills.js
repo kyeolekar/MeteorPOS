@@ -1,6 +1,10 @@
 Meteor.methods({
   saveBill: function(customer, data, payed, a, tax){
-    var currentno = Bills.findOne({},{sort:{billno:-1}}).billno || 0;
+      if(Bills.findOne({},{sort:{billno:-1}})){
+        var currentno = Bills.findOne({},{sort:{billno:-1}}).billno;
+      } else {
+        var currentno = 0;
+      }
     var billno = currentno + 1;
     var id = Bills.insert({
       customer: customer,
@@ -15,9 +19,16 @@ Meteor.methods({
     if(id){
       data.forEach(function(val){
         console.log(val);
-        var qty = parseInt(val.qty);
-        var total = parseInt(Items.findOne({item: val.code}).stock);
+        var qty = parseInt(val.qty);   
+        console.log(qty);    
+        if(Items.findOne({item: val.code})){
+                var total = parseInt(Items.findOne({item: val.code}).stock) || 0;
+        } else {
+                var total = 0; 
+        }
         total = total - qty;
+        total = parseInt(total);
+        console.log(total);
         Items.update({item: val.code},{
           $set:{
             stock: total

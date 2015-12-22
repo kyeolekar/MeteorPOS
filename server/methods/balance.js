@@ -22,5 +22,14 @@ Meteor.methods({
       return inserted;
     }
     return "Please fill all the fields";
+  },
+  editCompany: function(id, data){
+    if(data.name){
+        Party.update({_id: id},{
+          name: data.name,
+          vat: data.vat,
+          lbt: data.lbt
+        });
+    }      
   }
 });

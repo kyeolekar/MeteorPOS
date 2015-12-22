@@ -138,15 +138,42 @@ Router.route("/balance-sheet",{
   }
 });
 
-Router.route("/edit-company",{
+Router.route("/edit-company/:id",{
   waitOn: function(){
     Meteor.subscribe("userData");
     Meteor.subscribe("company");
+    Meteor.subscribe("OneParty", this.params.id);
     return Meteor.subscribe("balance");
   },
   name: 'editCompany',
   template:"EditCompany",
   title:"Edit Company Form",
+  cache: true,
+  onBeforeAction: function () {
+    if (!Meteor.userId()) {
+      this.render('Account');
+    } else {
+      this.next();
+    }
+  },
+  data: function(){
+      return Party.findOne({_id: this.params.id});
+  }
+});
+
+//EditList
+
+Router.route("/edit-company/",{
+  waitOn: function(){
+    Meteor.subscribe("userData");
+    Meteor.subscribe("company");
+    Meteor.subscribe("party");
+    
+    return Meteor.subscribe("balance");
+  },
+  name: 'EditList',
+  template:"EditList",
+  title:"Edit List Table",
   cache: true,
   onBeforeAction: function () {
     if (!Meteor.userId()) {

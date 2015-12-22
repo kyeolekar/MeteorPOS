@@ -1,9 +1,11 @@
 Template.EditItem.helpers({
   Items: function(){
-    return Items.findOne();
+      var controller = Router.current();
+    return Items.findOne({_id: controller.params.id});
   },
   selectedItem: function () {
-    return Items.findOne();
+      var controller = Router.current();
+    return Items.findOne({_id: controller.params.id});
   }
 });
 

@@ -31,7 +31,21 @@ a:hover, a:focus {
 }
 
 @media print{
-
+    table{
+        border-color: #000;
+    }
+    body{
+        width: 40mm;
+        font-size: 10px;
+    }
+    .container{
+        padding-left: 0;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+    }
+    .border tr, table, tr, td{
+        border: 1px solid #000;
+    }
 .content {
     margin-left: 1px;
     margin-top: 1px;
