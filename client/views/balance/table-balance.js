@@ -13,9 +13,9 @@ Template.BalanceList.helpers({
       var start = $("#startDate").val(), end = $("#endDate").val();
         var gt = new Date(start);
         var lte = new Date(end);
-        return Balance.find({"date": { $gt: gt, $lte: lte }});
+        return Balance.find({"date": { $gt: gt, $lte: lte } });
     }
-    return Balance.find();
+    return Balance.find({},{ sort: { name: 1 }});
     
   },
   filterOn: function(){

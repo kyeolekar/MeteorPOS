@@ -105,7 +105,7 @@ Template.Bills.events = {
     item.disc = $("#searchDisc").val() || 0;
     item.itemT = item.mrp * item.qty;
     if(item.disc===0){
-      item.amount = orig.price * item.qty;
+      item.amount = item.mrp * item.qty;
     } else {
       item.amount = $("#searchTotal").val() ;
     }
@@ -116,6 +116,7 @@ Template.Bills.events = {
     $("#searchBox").focus();
     $("#searchQty").val(1);
     calcTotal();
+    console.log(arrCart);
   },
   'click .remove': function(e){
     var val = $(e.currentTarget).children('input:hidden').val();
@@ -149,7 +150,7 @@ Template.Bills.events = {
     var a = {};
     a.total = $("#t-total").text();
     a.savings = $("#t-saving").text()
-    a.grand = $("#t-calcTotal").text();
+    a.grand = Math.round($("#t-calcTotal").text());
     var tax = $("#tax-inv").is(':checked');
     var payed = true;
     console.log(data);

@@ -1,0 +1,125 @@
+<template name="BillsNew">
+  <div class="container">
+    <div class="row">
+      <div class="text-center"><h2 id="inv-name">Cash Memo</h2></div>
+    </div>
+
+    <div class="row addr">
+      <div class="col-md-6" >
+        <label>Bill To</label>
+        <input type="text" tabindex="1" id="party-name" value="Annonymous" class="form-control">
+        <div class="checkbox">
+          <label><input type="checkbox" id="tax-inv">Tax Invoice</label>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="seller-name">
+        {{company.name}}<br>
+        {{company.address}}
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row date hide">
+      
+      <div class="col-md-6">
+        Bill Number - 10011
+      </div>
+
+      <div class="col-md-6">
+        Date &amp; Time - 10/10/10 23:23:23
+      </div>
+
+    </div>
+
+    <br><br>
+    <table class="table" id="displayTable">
+      <thead>
+        <tr >
+          <th class="text-center">
+            Code
+          </th>
+          <th class="text-center">
+            Item
+          </th>
+          <th class="text-center">
+            Quantity
+          </th>
+          <th class="text-center">
+            MRP
+          </th>
+          <th class="text-center">
+            Discount
+          </th>
+
+          <th class="text-center">
+            Amount
+          </th>
+          <th class="text-center">
+            Delete
+          </th>
+          <th class="text-center">
+            Stock
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id='search'>
+          <td>
+            <input type="text" id="searchBox" tabindex="1" name='code'  placeholder='Item Code' class="form-control mousetrap" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" id="searchItem" name='item' placeholder='Name' class="form-control mousetrap" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" id="searchQty" name='quantity' placeholder='Quantity' class="form-control mousetrap" value="1"  tabindex="2" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" id="searchMrp" step="0.01" name='mrp' placeholder='0' class="form-control mousetrap" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" id="searchDisc" name='discount (%)' placeholder='0' class="form-control mousetrap"  tabindex="3" step="0.01" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" step="0.01" id="searchTotal" name='amount' placeholder='0' class="form-control mousetrap" form="addToCart" />
+          </td>
+          <td>
+            <input type="submit" tabindex="4" class="form-control" value="Add" form="addToCart" />
+          </td>
+          <td>
+            <input type="text" id="stockQty" name='stock' placeholder='Stock' class="form-control mousetrap disabled" value="0"  tabindex="2" form="addToCart" disabled />
+          </td>
+        </tr>
+
+        <tr class="sum">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            &nbsp; <span id="t-total">0</span><br>
+            - <span id="t-saving">0</span><br>
+            <hr>
+            <span id="t-calcTotal">0</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form id="addToCart"></form>
+
+    <div class="row">
+      <div class="col-md-6 pull-right buttons">
+        <form id="payment">
+          <button class="btn btn-lg btn-primary pull-right" type="submit">Pay</button>
+        </form>
+
+        <!--<form id="savement">
+          <button type="submit" class="btn btn-lg btn-default pull-right">Save</button>
+        </form>-->
+      </div>
+    </div>
+
+  </div>
+</template>

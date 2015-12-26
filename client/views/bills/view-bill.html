@@ -1,5 +1,7 @@
 <template name="viewBill">
   <div class="container">
+
+  {{#if tax}}
     <div class="row">
       <div class="text-center">
         <h4>
@@ -37,7 +39,7 @@
       </div>
 
     </div>
-
+{{/if}}
     <table class="table" id="displayTable">
       <thead>
         <tr >
@@ -79,17 +81,18 @@
         </tr>
         
         <tr style="border-bottom:1px solid #000">
-            <td><b>Total</b></td>
+            <td><b>Rounded Total</b></td>
             <td><span id="t-calcTotal">₹{{info.grand}}</span></td>
         </tr>
     </table>
 
   </div>
-  {{#if tax}}
-  <hr>
   
   <footer>
+  <hr>
+  {{#if tax}}
     {{company.declaration}}    
-  </footer>
   {{/if}}
+    <p><b>Goods once sold will not be taken back.</b></p>
+  </footer>
 </template>

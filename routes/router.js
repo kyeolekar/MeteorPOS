@@ -36,6 +36,17 @@ Router.route("/bills",{
   cache: true
 });
 
+Router.route("/bills-new",{
+  waitOn: function() {
+    Meteor.subscribe("company");
+    return Meteor.subscribe('Items');
+  },
+  name: 'billsNew',
+  template:"BillsNew",
+  title:"Bills",
+  cache: true
+});
+
 Router.route("/bills/:id",{
   waitOn: function() {
      Meteor.subscribe('Items');
